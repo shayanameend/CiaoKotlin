@@ -45,7 +45,15 @@ internal fun App() = AppTheme {
       LaunchedEffect(Unit) {
         while (isActive) {
           val remaining = (target - rotate.value) / target
-          rotate.animateTo(target, animationSpec = tween((1_000 * remaining).toInt(), easing = LinearEasing))
+
+          rotate.animateTo(
+            target,
+            animationSpec = tween(
+              (1_000 * remaining).toInt(),
+              easing = LinearEasing
+            )
+          )
+
           rotate.snapTo(0f)
         }
       }
@@ -65,41 +73,57 @@ internal fun App() = AppTheme {
       modifier = Modifier
         .padding(horizontal = 8.dp, vertical = 4.dp)
         .widthIn(min = 200.dp),
-      onClick = { isRotating = !isRotating },
-      content = {
-        Icon(vectorResource(Res.drawable.ic_rotate_right), contentDescription = null)
+      onClick = { isRotating = !isRotating }
+    ) {
+      Icon(
+        vectorResource(Res.drawable.ic_rotate_right),
+        contentDescription = null
+      )
 
-        Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+      Spacer(Modifier.size(ButtonDefaults.IconSpacing))
 
-        Text(
-          stringResource(if (isRotating) Res.string.stop else Res.string.run)
+      Text(
+        stringResource(
+          if (isRotating) Res.string.stop
+          else Res.string.run
         )
-      }
-    )
+      )
+    }
 
     var isDark by LocalThemeIsDark.current
     val icon = remember(isDark) {
       if (isDark) Res.drawable.ic_light_mode
       else Res.drawable.ic_dark_mode
     }
+    val text = remember(isDark) {
+      if (isDark) Res.string.light
+      else Res.string.dark
+    }
 
     ElevatedButton(
-      modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp).widthIn(min = 200.dp),
-      onClick = { isDark = !isDark },
-      content = {
-        Icon(vectorResource(icon), contentDescription = null)
+      modifier = Modifier
+        .padding(horizontal = 8.dp, vertical = 4.dp)
+        .widthIn(min = 200.dp),
+      onClick = { isDark = !isDark }
+    ) {
+      Icon(
+        vectorResource(icon),
+        contentDescription = null
+      )
 
-        Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+      Spacer(Modifier.size(ButtonDefaults.IconSpacing))
 
-        Text(stringResource(Res.string.theme))
-      }
-    )
+      Text(stringResource(text))
+    }
 
     val uriHandler = LocalUriHandler.current
 
     TextButton(
-      modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp).widthIn(min = 200.dp),
-      onClick = { uriHandler.openUri("https://github.com/terrakok") },
+      modifier = Modifier
+        .padding(horizontal = 8.dp, vertical = 4.dp),
+      onClick = {
+        uriHandler.openUri("https://github.com/terrakok")
+      }
     ) {
       Text(stringResource(Res.string.open_github))
     }
