@@ -10,10 +10,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
+
         if let window = window {
-            window.rootViewController = MainKt.MainViewController()
+            window.rootViewController = MainKt.makeComposeUIViewController()
             window.makeKeyAndVisible()
         }
+
         return true
     }
 }

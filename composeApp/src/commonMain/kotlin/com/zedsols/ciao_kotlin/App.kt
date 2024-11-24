@@ -38,9 +38,9 @@ internal fun App() = AppTheme {
     )
 
     var isRotating by remember { mutableStateOf(false) }
-
     val rotate = remember { Animatable(0f) }
     val target = 360f
+
     if (isRotating) {
       LaunchedEffect(Unit) {
         while (isActive) {
@@ -68,7 +68,9 @@ internal fun App() = AppTheme {
       onClick = { isRotating = !isRotating },
       content = {
         Icon(vectorResource(Res.drawable.ic_rotate_right), contentDescription = null)
+
         Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+
         Text(
           stringResource(if (isRotating) Res.string.stop else Res.string.run)
         )
@@ -86,12 +88,15 @@ internal fun App() = AppTheme {
       onClick = { isDark = !isDark },
       content = {
         Icon(vectorResource(icon), contentDescription = null)
+
         Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+
         Text(stringResource(Res.string.theme))
       }
     )
 
     val uriHandler = LocalUriHandler.current
+
     TextButton(
       modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp).widthIn(min = 200.dp),
       onClick = { uriHandler.openUri("https://github.com/terrakok") },
