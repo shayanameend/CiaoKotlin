@@ -17,7 +17,7 @@ kotlin {
   jvmToolchain(17)
 
   androidTarget {
-    //https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
+    // https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
     instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
   }
@@ -100,7 +100,7 @@ android {
   }
 }
 
-//https://developer.android.com/develop/ui/compose/testing#setup
+// https://developer.android.com/develop/ui/compose/testing#setup
 dependencies {
   androidTestImplementation(libs.androidx.uitest.junit4)
   debugImplementation(libs.androidx.uitest.testManifest)

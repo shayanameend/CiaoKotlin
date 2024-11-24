@@ -82,6 +82,10 @@ internal fun App() = AppTheme {
       if (isDark) Res.drawable.ic_light_mode
       else Res.drawable.ic_dark_mode
     }
+    val text = remember(isDark) {
+      if (isDark) Res.string.light
+      else Res.string.dark
+    }
 
     ElevatedButton(
       modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp).widthIn(min = 200.dp),
@@ -91,7 +95,7 @@ internal fun App() = AppTheme {
 
         Spacer(Modifier.size(ButtonDefaults.IconSpacing))
 
-        Text(stringResource(Res.string.theme))
+        Text(stringResource(text))
       }
     )
 
